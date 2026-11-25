@@ -1,0 +1,11 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { PricingPage } from "../components/ioimg/PricingPage";
+
+const title = "Pricing — ioimg";
+const description = "Self-host for free or go managed. Transparent image proxy pricing without per-transform surprises.";
+---
+
+<Layout title={title} description={description}>
+  <PricingPage client:load />
+</Layout>

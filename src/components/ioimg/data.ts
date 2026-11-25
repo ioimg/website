@@ -3,16 +3,16 @@ export const EASE_IN_OUT = [0.65, 0, 0.35, 1] as const;
 export const SPRING_POP = { type: "spring", stiffness: 420, damping: 18, mass: 0.7 } as const;
 
 export const GITHUB_URL = "https://github.com/ioimg/ioimg";
-export const DOCS_URL = "https://github.com/ioimg/ioimg#readme";
+export const DOCS_URL = "/docs";
 export const DEMO_ORIGIN = "https://cdn.acme.com/hero.jpg";
 export const DEMO_BASE = "https://acme.ioimg.dev";
 
 export const NAV_LINKS = [
-  { href: "#why", label: "Why ioimg" },
-  { href: "#playground", label: "Playground" },
-  { href: "#formats", label: "Formats" },
-  { href: "#cache", label: "Cache" },
-  { href: "#pricing", label: "Pricing" },
+  { href: "/features", label: "Features" },
+  { href: "/docs", label: "Docs" },
+  { href: "/#playground", label: "Playground" },
+  { href: "/#cache", label: "Cache" },
+  { href: "/pricing", label: "Pricing" },
 ];
 
 export const COLORS = {

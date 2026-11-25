@@ -1,0 +1,206 @@
+---
+import "../styles/global.css";
+import "../styles/docs.css";
+import { IoiStyles, IoiMark, GithubMark } from "../components/ioimg/ui";
+import { DocsSearch } from "../components/docs/DocsSearch";
+import { DOCS_NAV, DOCS_FLAT, docsHref } from "../components/docs/nav";
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  headings: Heading[];
+  updated?: string;
+}
+
+const { title, description, slug, headings, updated = "2026-11-25" } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const current = DOCS_FLAT.findIndex((item) => item.slug === slug);
+const prev = current > 0 ? DOCS_FLAT[current - 1] : null;
+const next = current >= 0 && current < DOCS_FLAT.length - 1 ? DOCS_FLAT[current + 1] : null;
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const fullTitle = `${title} — ioimg docs`;
+const editUrl = `https://github.com/ioimg/website/edit/develop/src/content/docs/${slug}.md`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#FFF7F1" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <div class="io-root min-h-screen bg-(--paper) text-(--ink)">
+      <IoiStyles />
+
+      <header class="sticky top-0 z-40 border-b-2 border-(--ink)/10 bg-(--paper)/90 backdrop-blur-md">
+        <div class="mx-auto flex h-[68px] max-w-[1400px] items-center gap-3 px-4 sm:px-6">
+          <a href="/" class="group flex shrink-0 items-center gap-2" aria-label="ioimg home">
+            <IoiMark className="h-9 w-9 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:rotate-[-6deg]" />
+            <span class="io-display text-[1.55rem] leading-none">ioimg</span>
+            <span class="hidden rounded-full border-2 border-(--ink) bg-(--lilac) px-2 py-0.5 text-[10px] font-black uppercase tracking-wider sm:inline">docs</span>
+          </a>
+
+          <nav class="ml-auto hidden items-center gap-1 md:flex" aria-label="Site">
+            <a href="/" class="rounded-full px-3 py-1.5 text-sm font-black hover:bg-(--butter)">Product</a>
+            <a href="/features" class="rounded-full px-3 py-1.5 text-sm font-black hover:bg-(--butter)">Features</a>
+            <a href="/pricing" class="rounded-full px-3 py-1.5 text-sm font-black hover:bg-(--butter)">Pricing</a>
+            <a href="/docs" class="rounded-full bg-(--ink) px-3 py-1.5 text-sm font-black text-(--paper)">Docs</a>
+            <a href="https://github.com/ioimg/ioimg" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-black hover:bg-(--butter)">
+              <GithubMark className="h-4 w-4" /> GitHub
+            </a>
+          </nav>
+
+          <div class="ml-auto flex items-center gap-2 md:ml-1">
+            <DocsSearch client:load />
+            <a href="/" class="grid h-9 w-9 place-items-center rounded-full border-2 border-(--ink) bg-(--paper) text-sm font-black md:hidden" aria-label="Back to product">↩</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="mx-auto grid max-w-[1400px] gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[240px_minmax(0,1fr)_220px] lg:py-10">
+        <aside class="hidden lg:block">
+          <div class="sticky top-[92px] max-h-[calc(100svh-120px)] overflow-y-auto pr-2 pb-8">
+            <p class="mb-3 px-3 text-[10px] font-black uppercase tracking-[0.18em] opacity-45">Documentation</p>
+            {DOCS_NAV.map((section) => (
+              <div class="mb-5">
+                <p class="mb-1.5 flex items-center gap-2 px-3 text-[11px] font-black uppercase tracking-[0.12em] opacity-55">
+                  <span class="grid h-5 w-5 place-items-center rounded-full border-2 border-(--ink) bg-(--butter) text-[10px]">{section.icon}</span>
+                  {section.label}
+                </p>
+                <ul class="space-y-0.5">
+                  {section.items.map((item) => {
+                    const href = docsHref(item.slug);
+                    const active = path === href;
+                    return (
+                      <li>
+                        <a
+                          href={href}
+                          class={`block rounded-[12px] px-3 py-1.5 text-[13px] font-bold transition-colors ${active ? "border-2 border-(--ink) bg-(--lilac) shadow-[2px_2px_0_var(--ink)]" : "hover:bg-(--lilac-soft)"}`}
+                          aria-current={active ? "page" : undefined}
+                        >
+                          {item.label}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </aside>
+
+        <main class="min-w-0">
+          <details class="io-sticker-sm mb-6 rounded-[18px] bg-(--paper) p-3 lg:hidden">
+            <summary class="cursor-pointer list-none text-sm font-black">☰ Docs menu</summary>
+            <div class="mt-3 grid gap-3">
+              {DOCS_NAV.map((section) => (
+                <div>
+                  <p class="text-[10px] font-black uppercase tracking-[0.14em] opacity-50">{section.label}</p>
+                  <ul class="mt-1 grid gap-0.5">
+                    {section.items.map((item) => (
+                      <li>
+                        <a href={docsHref(item.slug)} class={`block rounded-[10px] px-2 py-1 text-sm font-bold ${path === docsHref(item.slug) ? "bg-(--butter)" : "hover:bg-(--lilac-soft)"}`}>
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </details>
+
+          <div class="mb-5 flex flex-wrap items-center gap-2 text-[11px] font-black opacity-55">
+            <a href="/docs" class="hover:underline">Docs</a>
+            <span>›</span>
+            <span>{DOCS_NAV.find((s) => s.items.some((i) => i.slug === slug))?.label ?? "Reference"}</span>
+            <span>›</span>
+            <span class="text-(--ink) opacity-100">{title}</span>
+          </div>
+
+          <header class="border-b-2 border-dashed border-(--ink)/20 pb-7">
+            <h1 class="io-display text-[clamp(2.4rem,5vw,4rem)] leading-[0.95]">{title}</h1>
+            <p class="mt-4 max-w-2xl text-lg font-bold opacity-70">{description}</p>
+            <div class="mt-4 flex flex-wrap items-center gap-2 text-[11px] font-black opacity-55">
+              <span class="rounded-full border-2 border-(--ink) bg-(--mint) px-2.5 py-1 text-(--ink) opacity-100">Updated {updated}</span>
+              <a href={editUrl} target="_blank" rel="noopener" class="rounded-full border-2 border-(--ink)/30 px-2.5 py-1 hover:border-(--ink) hover:bg-(--butter)">Edit this page ↗</a>
+            </div>
+          </header>
+
+          <article class="docs-prose mt-8">
+            <slot />
+          </article>
+
+          <nav class="mt-14 grid gap-3 border-t-2 border-dashed border-(--ink)/20 pt-7 sm:grid-cols-2" aria-label="Docs pagination">
+            {prev ? (
+              <a href={docsHref(prev.slug)} class="group rounded-[20px] border-2 border-(--ink) bg-(--paper) p-4 shadow-[3px_3px_0_var(--ink)] transition-transform hover:-translate-y-0.5">
+                <span class="text-[10px] font-black uppercase tracking-[0.16em] opacity-50">← Previous</span>
+                <span class="mt-1 block text-base font-black group-hover:underline">{prev.label}</span>
+              </a>
+            ) : (
+              <span />
+            )}
+            {next ? (
+              <a href={docsHref(next.slug)} class="group rounded-[20px] border-2 border-(--ink) bg-(--butter) p-4 text-right shadow-[3px_3px_0_var(--ink)] transition-transform hover:-translate-y-0.5">
+                <span class="text-[10px] font-black uppercase tracking-[0.16em] opacity-50">Next →</span>
+                <span class="mt-1 block text-base font-black group-hover:underline">{next.label}</span>
+              </a>
+            ) : (
+              <span />
+            )}
+          </nav>
+        </main>
+
+        <aside class="hidden lg:block">
+          {toc.length > 0 && (
+            <div class="sticky top-[92px] max-h-[calc(100svh-120px)] overflow-y-auto pb-8">
+              <p class="mb-3 text-[10px] font-black uppercase tracking-[0.18em] opacity-45">On this page</p>
+              <ul class="space-y-1 border-l-2 border-(--ink)/15 pl-3">
+                {toc.map((h) => (
+                  <li class={h.depth === 3 ? "pl-3" : ""}>
+                    <a href={`#${h.slug}`} class="block rounded px-1.5 py-1 text-[12px] font-bold opacity-65 hover:bg-(--butter) hover:opacity-100">
+                      {h.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div class="mt-8 rounded-[18px] border-2 border-(--ink) bg-(--lilac-soft) p-3.5 shadow-[3px_3px_0_var(--ink)]">
+                <p class="text-xs font-black">Need a hand?</p>
+                <p class="mt-1 text-[11px] font-bold opacity-65">Open an issue or say hi. We read everything.</p>
+                <a href="https://github.com/ioimg/ioimg/issues" target="_blank" rel="noopener" class="mt-2 inline-block text-[11px] font-black underline decoration-2 underline-offset-2">GitHub issues ↗</a>
+              </div>
+            </div>
+          )}
+        </aside>
+      </div>
+
+      <footer class="border-t-2 border-(--ink)/10 px-4 py-8 sm:px-6">
+        <div class="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 text-xs font-bold opacity-60">
+          <span class="inline-flex items-center gap-2"><IoiMark className="h-5 w-5" /> © 2026 ioimg. Alpha software, honest docs.</span>
+          <span class="flex gap-4">
+            <a href="/features" class="hover:underline">Features</a>
+            <a href="/docs" class="hover:underline">Docs</a>
+            <a href="https://github.com/ioimg/ioimg" target="_blank" rel="noopener" class="hover:underline">GitHub ↗</a>
+          </span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

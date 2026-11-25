@@ -1,0 +1,11 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { FeaturesPage } from "../components/ioimg/FeaturesPage";
+
+const title = "Features — ioimg";
+const description = "Transforms, formats, cache, security, operations, and multi-tenant control plane — the honest ioimg feature checklist.";
+---
+
+<Layout title={title} description={description}>
+  <FeaturesPage client:load />
+</Layout>

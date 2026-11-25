@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { ArrowRight, Check, Sparkles as SparklesIcon } from "lucide-react";
 import { Artwork } from "./Artwork";
 import { EASE_OUT, GITHUB_URL, HERO_VARIANTS } from "./data";
@@ -7,8 +7,6 @@ import { GithubMark, IoiMark, Magnetic, Mascot, Sparkle } from "./ui";
 const LINES = ["One master.", "Every image.", "Zero busywork."];
 
 export function Hero() {
-  const reduced = useReducedMotion();
-
   return (
     <section id="top" className="relative isolate overflow-hidden bg-(--paper) px-5 pt-28 pb-16 sm:px-8 lg:min-h-[100svh] lg:px-12 lg:pt-32">
       <div aria-hidden="true" className="io-dots pointer-events-none absolute inset-0 -z-10 opacity-60" />
@@ -98,7 +96,7 @@ export function Hero() {
         </div>
 
         <div className="relative mx-auto w-full max-w-[620px]">
-          <RenditionGraph reduced={!!reduced} />
+          <RenditionGraph />
 
           <div className="pointer-events-none absolute -top-4 -left-2 hidden w-24 lg:block">
             <div className="io-bob" style={{ ["--dur" as string]: "4.6s", ["--tilt" as string]: "-6deg" }}>
@@ -122,7 +120,7 @@ export function Hero() {
   );
 }
 
-function RenditionGraph({ reduced }: { reduced: boolean }) {
+function RenditionGraph() {
   return (
     <div className="relative aspect-[1.06/1] w-full select-none">
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full" aria-hidden="true">
@@ -140,8 +138,8 @@ function RenditionGraph({ reduced }: { reduced: boolean }) {
             strokeWidth="1.4"
             strokeLinecap="round"
             strokeDasharray="1.5 2.5"
-            initial={reduced ? { opacity: 1 } : { pathLength: 0, opacity: 0 }}
-            animate={reduced ? { opacity: 1 } : { pathLength: 1, opacity: 1 }}
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 0.9, ease: EASE_OUT, delay: p.delay }}
           />
         ))}
@@ -176,7 +174,7 @@ function RenditionGraph({ reduced }: { reduced: boolean }) {
           initial={{ opacity: 0, x: 30, rotate: v.rotate + 10, scale: 0.75 }}
           animate={{ opacity: 1, x: 0, rotate: v.rotate, scale: 1 }}
           transition={{ type: "spring", stiffness: 160, damping: 14, delay: v.delay }}
-          whileHover={reduced ? undefined : { scale: 1.04, rotate: 0 }}
+          whileHover={{ scale: 1.04, rotate: 0 }}
         >
           <div className="io-sticker-sm rounded-[18px] bg-(--paper) p-2">
             <div className="flex items-center justify-between gap-1">

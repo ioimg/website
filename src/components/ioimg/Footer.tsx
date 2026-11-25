@@ -4,9 +4,9 @@ import { DOCS_URL, EASE_OUT, GITHUB_URL } from "./data";
 import { GithubMark, IoiMark, Magnetic, Mascot } from "./ui";
 
 const LINKS = [
-  { title: "Product", items: [["Playground", "#playground"], ["Formats", "#formats"], ["Cache", "#cache"], ["Pricing", "#pricing"]] },
-  { title: "Build", items: [["GitHub", GITHUB_URL], ["Docs", DOCS_URL], ["Roadmap", `${GITHUB_URL}/blob/main/docs/ROADMAP.md`], ["Parity notes", `${GITHUB_URL}/blob/main/docs/IMGPARITY.md`]] },
-  { title: "Company", items: [["Control plane", "https://github.com/ioimg/control-plane"], ["Security", `${GITHUB_URL}/blob/main/docs/SECURITY.md`], ["Status", "#"], ["Contact", "mailto:hello@ioimg.dev"]] },
+  { title: "Product", items: [["Features", "/features"], ["Playground", "/#playground"], ["Cache", "/#cache"], ["Pricing", "/pricing"]] },
+  { title: "Build", items: [["GitHub", GITHUB_URL], ["Docs", DOCS_URL], ["Roadmap", "/docs/roadmap"], ["Parity notes", `${GITHUB_URL}/blob/main/docs/IMGPARITY.md`]] },
+  { title: "Company", items: [["Control plane", "/docs/control-plane"], ["Security", "/docs/security"], ["Status", "#"], ["Contact", "mailto:hello@ioimg.dev"]] },
 ];
 
 export function Footer() {
@@ -29,7 +29,7 @@ export function Footer() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Magnetic>
-                <a href="#playground" className="io-btn inline-flex items-center gap-2 rounded-full bg-(--tang) px-6 py-3.5 text-base font-black text-[#1B1720] [--ink:#FFF7F1]">
+                <a href="/#playground" className="io-btn inline-flex items-center gap-2 rounded-full bg-(--tang) px-6 py-3.5 text-base font-black text-[#1B1720] [--ink:#FFF7F1]">
                   Try the playground
                   <ArrowRight className="h-5 w-5" strokeWidth={2.75} />
                 </a>

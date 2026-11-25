@@ -1,0 +1,237 @@
+.docs-prose {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: color-mix(in srgb, var(--ink) 88%, transparent);
+}
+
+.docs-prose > :first-child {
+  margin-top: 0;
+}
+
+.docs-prose h2 {
+  font-family: "Mochiy Pop One", "Zen Maru Gothic", sans-serif;
+  font-size: clamp(1.55rem, 2.7vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin-top: 2.7rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px dashed color-mix(in srgb, var(--ink) 18%, transparent);
+  color: var(--ink);
+  scroll-margin-top: 92px;
+}
+
+.docs-prose h3 {
+  font-family: "Mochiy Pop One", "Zen Maru Gothic", sans-serif;
+  font-size: 1.22rem;
+  line-height: 1.25;
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
+  color: var(--ink);
+  scroll-margin-top: 92px;
+}
+
+.docs-prose h4 {
+  font-weight: 900;
+  font-size: 1.02rem;
+  margin-top: 1.6rem;
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+}
+
+.docs-prose p {
+  margin: 0.85rem 0;
+}
+
+.docs-prose a {
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--tang);
+  text-underline-offset: 3px;
+}
+
+.docs-prose a:hover {
+  background: var(--butter);
+}
+
+.docs-prose strong {
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.docs-prose ul,
+.docs-prose ol {
+  margin: 0.85rem 0;
+  padding-left: 1.25rem;
+}
+
+.docs-prose ul {
+  list-style: none;
+}
+
+.docs-prose ul > li {
+  position: relative;
+  padding-left: 0.3rem;
+}
+
+.docs-prose ul > li::before {
+  content: "✦";
+  position: absolute;
+  left: -1.1rem;
+  top: 0.05rem;
+  font-size: 0.72em;
+  color: var(--tang);
+}
+
+.docs-prose ol {
+  list-style: decimal;
+}
+
+.docs-prose li {
+  margin: 0.35rem 0;
+}
+
+.docs-prose li > ul,
+.docs-prose li > ol {
+  margin: 0.3rem 0;
+}
+
+.docs-prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.86em;
+  background: var(--lilac-soft);
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  border-radius: 6px;
+  padding: 0.12em 0.38em;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.docs-prose pre {
+  margin: 1.1rem 0;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  border: 2.5px solid var(--ink);
+  border-radius: 18px;
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: 4px 5px 0 var(--ink);
+  font-size: 0.84rem;
+  line-height: 1.7;
+  tab-size: 2;
+}
+
+.docs-prose pre code {
+  display: block;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+  overflow-wrap: normal;
+  white-space: pre;
+}
+
+.docs-prose blockquote {
+  margin: 1.2rem 0;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--ink);
+  border-left: 7px solid var(--tang);
+  border-radius: 14px;
+  background: var(--butter);
+  box-shadow: 3px 3px 0 var(--ink);
+  font-weight: 700;
+}
+
+.docs-prose blockquote p {
+  margin: 0.25rem 0;
+}
+
+.docs-prose hr {
+  border: 0;
+  border-top: 2px dashed color-mix(in srgb, var(--ink) 20%, transparent);
+  margin: 2rem 0;
+}
+
+.docs-prose table {
+  width: 100%;
+  margin: 1.2rem 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  overflow: hidden;
+  font-size: 0.84rem;
+  background: #fff;
+  display: block;
+  overflow-x: auto;
+}
+
+.docs-prose thead {
+  background: var(--lilac-soft);
+}
+
+.docs-prose th {
+  text-align: left;
+  font-weight: 900;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 2px solid var(--ink);
+  white-space: nowrap;
+}
+
+.docs-prose td {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  vertical-align: top;
+}
+
+.docs-prose tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.docs-prose tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--lilac-soft) 38%, #fff);
+}
+
+.docs-prose img {
+  max-width: 100%;
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  box-shadow: 4px 5px 0 var(--ink);
+}
+
+.docs-prose kbd {
+  font-family: inherit;
+  font-size: 0.8em;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  padding: 0.05em 0.35em;
+  background: var(--paper);
+  box-shadow: 0 2px 0 var(--ink);
+}
+
+.docs-prose .astro-code {
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+}
+
+.docs-prose .astro-code span {
+  color: inherit;
+}
+
+.docs-prose td:first-child,
+.docs-prose th:first-child {
+  white-space: nowrap;
+}
+
+.docs-prose td code,
+.docs-prose th code {
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+
+.docs-prose table {
+  min-width: 560px;
+}

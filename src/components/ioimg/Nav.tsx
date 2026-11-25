@@ -23,7 +23,7 @@ export function Nav() {
           scrolled ? "io-sticker bg-(--paper)" : "border-[2.5px] border-transparent"
         }`}
       >
-        <a href="#top" className="group flex items-center gap-2" aria-label="ioimg home">
+        <a href="/" className="group flex items-center gap-2" aria-label="ioimg home">
           <IoiMark className="h-9 w-9 transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-[-8deg]" />
           <span className="io-display text-[1.6rem] leading-none">ioimg</span>
         </a>
@@ -43,7 +43,7 @@ export function Nav() {
             <GithubMark className="h-4 w-4" strokeWidth={2.5} /> GitHub
           </a>
           <Magnetic>
-            <a href="#playground" className="io-btn rounded-full bg-(--ink) px-5 py-2.5 text-sm font-black text-(--paper)">
+            <a href="/#playground" className="io-btn rounded-full bg-(--ink) px-5 py-2.5 text-sm font-black text-(--paper)">
               Try a URL
             </a>
           </Magnetic>
