@@ -1,0 +1,12 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Ioi from "../components/ioimg/index";
+
+const title = "ioimg — One master. Every image.";
+const description =
+  "The cute little image proxy that turns one original into every size, crop, and format — generated on demand, cached, purged, and measured.";
+---
+
+<Layout title={title} description={description}>
+  <Ioi client:load />
+</Layout>

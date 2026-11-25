@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+
+.vercel
+
+# Agent/browser artifacts
+.playwright-cli/
